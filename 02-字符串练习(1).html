@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 将字符串转换为驼峰式写法
+    let strName = 'xiaoshuo-ss-sfff-fe'
+    let res = ''
+    let arrName = strName.split('-')
+    // 1.将字符串转换为数组
+    /* 
+    arrName.forEach((item, index) => {
+      res += item.replace(item[0], item[0].toUpperCase()).concat('-')
+      if (index === arrName.length - 1) {
+        console.log(res.slice(0, -1));
+      }
+    }) */
+    // 2、第二种方法
+    arrName.forEach((item, index) => {
+      res += item[0].toUpperCase().concat(item.slice(1, item.length)).concat('-')
+    })
+    let newStr = arrName.join('-')
+    console.log(newStr);
+  </script>
+</body>
+
+</html>

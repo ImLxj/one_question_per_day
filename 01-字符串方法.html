@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符方法</title>
+</head>
+
+<body>
+  <script>
+    let str = 'hello world'
+    /* charAt方法和charCodeAt方法都接收一个参数，基于0的字符位置
+    charAt()方法是以单字符字符串的形式返回给定位置的那个字符
+    charCodeAt()方法获取到的不是字符而是字符编码  */
+    // console.log('charAt()方法的使用:', str.charAt(0));
+    /* for (let i = 0; i < str.length; i++) {
+      console.log('charAt()方法的使用:', str.charAt(i));
+    } */
+    console.log('charCodeAt()方法的使用:', str.charCodeAt(0));
+
+    // indexOf() 方法返回字符串中指定文本首次出现的索引（位置）
+    console.log('字符串的indexOf()方法', str.indexOf('w'));
+
+    // lastIndexOf() 方法返回指定文本在字符串中最后一次出现的索引
+    console.log('我在该字符串当中出现的最后一次的索引是:', str.lastIndexOf('l'));
+    /* 
+      要注意的是: indexOf() 和 lsatIndexOf() 在没有查询到文本的时候均返回 -1
+      两个方法都接收第二个参数,第二个参数是从什么位置开始检索
+    */
+    // length 该方法返回字符串的长度
+    console.log('该字符串的长度为:', str.length);
+
+    /* #################################### */
+
+    // 提取字符串
+    // 1、slice() 提取字符串的某个部分并在心字符串中返回被提取的部分
+    let str2 = 'Apple,Banana,Mango'
+    const resStrSlice = str2.slice(0, 5)
+    // 参数为正
+    console.log('我提取的字符串(参数为正)', resStrSlice);
+    // 参数为负
+    const resStrSlice2 = str2.slice(-5)
+    console.log('我提取的字符串(参数为负)', resStrSlice2);
+    /*
+      两个参数:
+        正: 是从前往后数的片段
+        负: 是从后往前数的片段
+      一个参数:
+        正: 是从前往后数该参数的值,裁剪掉字符串剩余的部分,
+        负: 同上
+    */
+
+    // substring() 方法和 slice()差不多 但是不能接收负值
+    // substr() 方法 和 slice()类似 但是第二个参数是决定要裁剪出来几个字符串
+    console.log('我会裁剪字符串', str2.substr(0, 2));
+    // 要是 substr() 省略第二个参数，则从该参数开始 去掉之前的字符串
+  </script>
+</body>
+
+</html>

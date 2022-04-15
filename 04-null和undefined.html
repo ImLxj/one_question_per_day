@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>null和undefined到底是不是一家人</title>
+</head>
+
+<body>
+  <script>
+    // undefined可能存在的场景
+    // 场景一、
+    var a;
+    console.log(a);
+    // 场景二、
+    var obj = {}
+    console.log(obj.name);
+    // 场景三
+    function foo() { }
+    console.log(foo());
+    // 场景四
+    function foo2(a, b) {
+      console.log(b);
+    }
+    foo2(1)
+
+    console.log('-------------------------------------------------');
+    /* null 表示空指针对象 */
+    // null 出现的场景
+    var obj2 = null;
+    function foo3() {
+      return {}
+    }
+    obj = foo3()
+    console.log(obj);
+
+    // 场景二、操作DOM对象，当页面中没有这个DOM对象的时候会出现
+    var btn = document.getElementById('id')
+    console.log(btn);
+
+    // 场景三、正则表达式
+    var str = 'text'
+    console.log(str.match(/a/));
+
+    console.log('******************************************************');
+    /* 
+      undefined 和 null 的相同点
+        1. 他们都是只有一个小写字母开头的字面量 undefined 和 null
+        2. !undefined !null = true
+        3. 当一个值为undefined和null时,在他们里面取值会报错
+        4. undefined和null 在非严格意义上时相等的 在严格意义上时不相等的
+          undefined == null ==> true
+          undefined === null ==> false
+    */
+    /* 
+      undefined 和 null 的不同点
+        1. null是一个关键字, undefined是window上的一个属性
+        2. 使用typeof检测数据类型的时候，null 是 'Object' undefined是 'Undefined'
+        3. 
+        4. 拼接字符串的时候他们都是本身变成字符串进行拼接
+        5. 做运算的时候 null 会变成0进行计算 undefined会变成NaN进行计算
+    */
+
+    // 3.的问题演示
+    /* var m;
+    console.log(m.name);
+    var a = null;
+    console.log(a.name); */
+
+    // 不同点的第三个问题
+    console.log(Object.prototype.toString.call(null));
+    console.log(Object.prototype.toString.call(undefined));
+  </script>
+</body>
+
+</html>

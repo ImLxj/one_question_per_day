@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串的逆序输出</title>
+</head>
+
+<body>
+  <script>
+    // 方法一、借助数组的reverse()方法,reverse() 会将数组逆序排序
+    // 例子
+    const arr = [1, 2, 3, 4, 5, 6]
+    console.log(arr.reverse());  // [6,5,4,3,2,1]
+
+    function reverseStr(str) {
+      return str.split('').reverse().join('')
+    }
+    console.log('第一种方法', reverseStr('abcdefg'));
+
+    // 方法二、使用字符串的charAt() 方法,charAt()方法会将传入一个索引来获取索引下的字符
+    function reverseStr2(str) {
+      let result = ''
+      for (let i = str.length - 1; i >= 0; i--) {
+        result += str.charAt(i)
+      }
+      return result
+    }
+
+    console.log('第二种方法', reverseStr2('abcdefg'));
+
+    // 方法三、采用递归的方式和charAt()
+    function reverseStr3(strIn, pos, strRes) {
+      if (pos < 0) {
+        return strRes
+      }
+      strRes += strIn.charAt(pos)
+      pos--
+      return reverseStr3(strIn, pos, strRes)
+    }
+    let str = 'qwertyui'
+    let pos = str.length - 1
+    let result = ''
+    console.log('第三种方式', reverseStr3(str, pos, result));
+
+    // 方法四、采用call方法
+    function reverseStr4(str) {
+      // 在数组的原型上的slice方法调用call方法传入一个字符串，会将字符串转换为数组
+      let arr = Array.prototype.slice.call(str)
+      console.log(arr);
+      return arr.reverse().join('')
+    }
+    console.log('第四种方式', reverseStr4('sadad'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>isNaN和Number.isNan到底是不是一个东西</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      NaN的特点
+        1. NaN 与任何数做运算都是NaN
+        2. NaN 与任何数相比较都是不相等的。
+    */
+    // ES5 isNaN() 会对传入的值进行隐式转换,判断传入的值能不能转换成普通的数字
+    // NaN 出现的几个场景
+    // 1. NaN 做运算的时候不会返回一个数字类型的东西会出现NaN
+    console.log('NaN出现的场景一:', 0 / 0); // NaN
+    // 2. NaN 当做强制类型转换的时候，当一个数值无法转换为数字类型就会出现NaN
+    console.log('NaN出现的场景二:', 1 * 'a'); // NaN
+
+    // ES6 Number.isNaN() 它只判断传入的值是不是NaN 如果是就返回true 如果不是就返回false
+    console.log(Number.isNaN(NaN)); // true
+    console.log(Number.isNaN(5)); // false
+
+    /* 判断isNaN()和Number.isNaN()输出的结果 */
+    console.log(isNaN(NaN)); // true
+    console.log(isNaN(23)); // false
+    console.log(isNaN('d')); // true
+    console.log(isNaN('0xd')); // false
+    console.log(isNaN('32131sdasdaad')); // true
+    console.log(NaN === NaN); // false
+    console.log(NaN === undefined); // false
+    console.log(typeof NaN); // Number
+    console.log(Object.prototype.toString.call(NaN)); // [Object Number]
+    
+    console.log(Number.isNaN(NaN)); // true
+    console.log(Number.isNaN(23));  // false
+    console.log(Number.isNaN('ds')); // false
+    console.log(Number.isNaN('15a16f51a5fa')); // false
+  </script>
+</body>
+
+</html>

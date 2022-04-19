@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      思路:
+        1. 将字符串先转为数组，然后通过数组的stor()方法对数组进行排序，然后再转为字符串
+        2. 通过字符串的lastIndexOf() 方法找到该字符出现最后一次的索引，减去第一次出现的索引然后 +1 就是该字符出现的次数
+        3. 将出现次数最多的赋值给定义的变量
+    */
+    function getMaxCount(str) {
+      let maxCount = 0
+      let maxCountChar = ''
+      str = str.split('').sort().join('')
+      for (let i = 0, j = str.length; i < j; i++) {
+        // 该字符出现的第一次索引的字符
+        let char = str.charAt(i)
+        // 该字符出现最后一次索引然后加上1得到该字符出现的次数
+        let charCount = str.lastIndexOf(char) - i + 1
+        if (charCount > maxCount) {
+          maxCount = charCount
+          maxCountChar = char
+        }
+        // 该数值遍历完成了 就跳过该数值遍历另外的
+        i = str.lastIndexOf(char)
+      }
+      return '该字符串当中出现次数最多的字符为：' + maxCountChar + '，出现的次数为：' + maxCount
+    }
+
+    let str = 'hello world'
+    console.log(getMaxCount(str));
+  </script>
+</body>
+
+</html>

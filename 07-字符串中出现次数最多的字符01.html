@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串中出现次数最多的字符</title>
+</head>
+
+<body>
+  <script>
+    /* 
+      思路：采用key-value方式 key:表示字符 value:表示次数
+    */
+    function getMaxCount(str) {
+      var obj = {}
+      for (let i = 0; i < str.length; i++) {
+        // 如果对象里面有当前字符就让数值加一,如果没有就添加对象并将value赋值为1
+        if (!obj[str.charAt(i)]) {
+          obj[str.charAt(i)] = 1
+        } else {
+          obj[str.charAt(i)]++
+        }
+      }
+      // 定义接收最多字符
+      let maxCount = 0
+      let maxCountChar = ''
+      for (let key in obj) {
+        // 判断字符数值大雨maxCount的时候就将value赋值给maxCount
+        if (obj[key] > maxCount) {
+          maxCount = obj[key]
+          maxCountChar = key
+        }
+      }
+      // 最后返回结果
+      return '该字符串当中出现次数最多的字符为：' + maxCountChar + '，出现的次数为：' + maxCount
+    }
+
+    let str = 'aaaaaasdadsd51651616515'
+    console.log(getMaxCount(str));
+  </script>
+</body>
+
+</html>

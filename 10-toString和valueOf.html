@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+
+	<body>
+		<script>
+			/* 
+      toString()方法 可以将一个引用类型的值转换为字符串
+
+    */
+			var obj = {}
+			console.log(obj.toString()) // "[object Object]"
+			var arr = [1, 2, 3]
+			console.log(arr.toString()) // "1,2,3"
+			var fun = function () {}
+			console.log(fun.toString()) // "function(){...}"
+			var date = new Date()
+			console.log(date.toString()) // Fri May 06 2022 20:11:28 GMT+0800 (GMT+08:00)
+
+			/* 
+        valueOf() 方法 返回最适合引用类型的原始值
+      */
+			var obj = {}
+			console.log(obj.valueOf()) // {}
+			var arr = [1, 2, 3]
+			console.log(arr.valueOf()) // [1,2,3]
+			var fun = function () {}
+			console.log(typeof fun.valueOf()) // f(){}
+			var date = new Date()
+			console.log(typeof date.valueOf()) // 1651839302987
+
+			console.log(String(date))
+			/* 
+        场景一：将引用类型的数据转换为String类型的值
+          如果定义了toString,会优先调用toString()，然后将原始值转换为字符串类型
+          如果定义了valueOf，会在调用valueOf(), 原始值转换为字符串类型
+          抛出一个异常
+      */
+			var a = []
+			a.toString = function () {
+				console.log('我执行了toString方法')
+				return []
+			}
+			a.valueOf = function () {
+				console.log('我执行了valueOf方法')
+				return []
+			}
+			// console.log(String(a))
+
+			/* 
+        场景二：将引用类型转换为Number类型的值
+          会先调用valueOf方法，去返回值，转换为数值类型
+          在调用toString()方法
+          抛出一个异常
+      */
+			var b = []
+			b.toString = function () {
+				console.log('我执行了toString方法')
+				return '2'
+			}
+			b.valueOf = function () {
+				console.log('我执行了valueOf方法')
+				return []
+			}
+			console.log(Number(b))
+
+			var c =
+				{
+					i: 10,
+					toString: function () {
+						console.log('我执行了toString方法')
+						return this.i
+					},
+					valueOf: function () {
+						console.log('我执行了valueOf方法')
+						return this.i
+					},
+				} +
+				// 加号表示数值运算
+				c // 我执行了valueOf方法  10
+			'' + c // 我执行了valueOf方法  "10"
+			c == '10' // 等号也是数值运算, 他会将valueOf返回的值做类型转换然后比较 我执行了valueOf方法 true
+		</script>
+	</body>
+</html>

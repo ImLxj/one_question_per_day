@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>判断字符串是否回文字符串</title>
-	</head>
-	<body>
-		<script>
-			/* 
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>判断字符串是否回文字符串</title>
+</head>
+
+<body>
+	<script>
+		/* 
         回文字符串：整个字符串一某个字符中心对称 abcdcba这种。
         将字符串从前往后依次进行逐个比较，如果比较到中间位，字符都是一样的，那么就是回文字符，否则不是。
       */
-			function isPalindromicStr(str) {
-				if (str.length === 0) return true
-			  str = str.toLowerCase().split("")
-				let start = 0
-				let end = str.length - 1
-				while (start < end) {
-					if (str[start] === str[end]) {
-						start++
-						end--
-					} else {
-						return false
-					}
-					return true
+		function isPalindromicStr(str) {
+			if (str.length === 0) return true
+			str = str.toLowerCase().split("")
+			let start = 0
+			let end = str.length - 1
+			while (start < end) {
+				if (str[start] === str[end]) {
+					start++
+					end--
+				} else {
+					return false
 				}
+				return true
 			}
-			let res1 = isPalindromicStr('abcdefedcba')
-			let res2 = isPalindromicStr('adsasd1315')
-			console.log(res1, res2)
-		</script>
-	</body>
+		}
+		let res1 = isPalindromicStr('abcdefedcba')
+		let res2 = isPalindromicStr('adsasd1315')
+		console.log(res1, res2)
+
+		// 使用递归的方式
+		function isPalindromicStr2(str) {
+			if (str.length <= 1) return true
+			str = str.toLowerCase()
+			let startValue = str[0]
+			let endValue = str[str.length - 1]
+			if (startValue === endValue) {
+				return isPalindromicStr2(str.slice(1, str.length - 1))
+			} else {
+				return false
+			}
+		}
+
+		let res3 = isPalindromicStr2('abcdefedcba')
+		let res4 = isPalindromicStr2('adsasd1315')
+		console.log(res3, res4)
+
+		// 将字符串逆序操作
+		function isPalindromicStr3(str) {
+			str = str.toLowerCase()
+			let result = str.split('').reverse().join('')
+			return str === result
+		}
+
+		let res5 = isPalindromicStr3('abcdefedcba')
+		let res6 = isPalindromicStr3('adsasd1315')
+		console.log(res5, res6)
+	</script>
+</body>
+
 </html>

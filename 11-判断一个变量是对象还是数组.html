@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			/* 
+        instanceof : 用来判断前面的是否在后面的原型链上，在就返回true 不在就返回false
+      */
+			function getDataType(a) {
+				if (a instanceof Array) {
+					return 'Array'
+				} else if (a instanceof Object) {
+					return 'Object'
+				} else {
+					return '其他'
+				}
+			}
+			let a = []
+			let b = {}
+			console.log(getDataType(a))
+			console.log(getDataType(b))
+
+			/* 
+        通过构造函数
+          每个函数实例身上都有一个constructor属性,这个属性指向是该函数实例身上的构造函数
+          
+      */
+			var c = []
+			console.log(c.__proto__ === [].constructor.prototype) // true
+			function getDataType2(o) {
+				var constructor = o.__proto__.constructor || o.constructor
+				if (constructor === Array) {
+					return 'Array'
+				} else if (constructor === Object) {
+					return 'Object'
+				} else {
+					return 'param is not object type'
+				}
+			}
+			console.log(getDataType2(a))
+			console.log(getDataType2(b))
+
+			/* 
+        toString 如果判断是对象 [object Object] 如果是数组 [object Array]
+      */
+			function getDataType3(o) {
+				var result = Object.prototype.toString.call(o)
+				if (result === '[object Object]') {
+					return 'Object'
+				} else if (result === '[object Array]') {
+					return 'Array'
+				} else {
+					return 'param is not object type'
+				}
+			}
+			console.log(getDataType3(a))
+			console.log(getDataType3(b))
+			
+		</script>
+	</body>
+</html>

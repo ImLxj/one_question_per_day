@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>深拷贝和浅拷贝</title>
+	</head>
+	<body>
+		<script>
+			// 浅拷贝
+			//#region
+			/* let student1 = {
+				name: '小明',
+				age: 18
+			}
+
+			function copy(obj) {
+				let newObj = {}
+				for (const i in obj) {
+					newObj[i] = obj[i]
+				}
+				return newObj
+			}
+
+			let student2 = copy(student1)
+			student1.name = '小花' */
+			//#endregion
+
+			// 深拷贝
+			let student1 = {
+				name: '小刚',
+				age: 18,
+				girlfriend: {
+					name: '小花',
+					age: '19'
+				}
+			}
+
+			let student2 = {}
+
+			function copy(obj) {
+				let newObj = {}
+				for (const i in obj) {
+					if (obj[i] instanceof Object) {
+						newObj[i] = copy(obj[i])
+					} else {
+						newObj[i] = obj[i]
+					}
+				}
+				return newObj
+			}
+
+			student2 = copy(student1)
+			student1.girlfriend.name = '小兰'
+
+			console.log(student1)
+			console.log(student2)
+		</script>
+	</body>
+</html>

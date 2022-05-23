@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BigInt大数类型</title>
+	</head>
+	<body>
+		<script>
+			/* 
+        BigInt是原始数据类型 大数类型
+        Number.MAX_SAFE_INTEGER  9007199254740991 JS当中的最大安全数
+        Number.MIN_SAFE_INTEGER  -9007199254740991 最小安全数
+        当一个数字超过了安全数之后，进行运算或者访问，数据会变得不准确。
+        服务器当中的长整型要比js当中的全数范围要大
+        解决方法:
+          - 服务返回给客户端的大数，按照“字符串格式返回”！
+          - 客户端把其变成BigInt,然后按照BigInt进行运算。
+          - 最后吧BigInt转换为字符串，返回给服务器即可。
+      */
+      
+		</script>
+	</body>
+</html>

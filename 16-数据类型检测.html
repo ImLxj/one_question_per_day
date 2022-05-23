@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>数据类型检测</title>
+	</head>
+	<body>
+		<script>
+			/*
+			     平时会涉及到的数据类型检测
+			       - typeof
+			       - instanceof
+			       - constructor
+			       - Object.prototype.toString.call()
+			       ----
+			       - Array.isArray() 检测是否是数组
+			       - isNaN 检测数值是否有效
+			   */
+			let a = {}
+			console.log(typeof a)
+			console.log(a instanceof Object)
+			console.log(Object.prototype.toString.call(a));
+				/*
+			     typeof检测数据类型
+			       + 所有的数据类型值，在计算机底层都是按照“64位”的二进制值来进行存储的！
+			       + typeof是按照二进制值进行检测类型的
+			         - 二进制的前三位是零，认为是对象，然后再去看看有没有实现call方法，如果实现了则返回 'function'
+			         没有实现，则返回 'object'
+			         - null是64个零 typeof null => 'object' [局限性]
+			         - function类型实现了call方法 会返回 'function'
+			       + 检测未被声明的变量，值是undefined
+			   */
+
+				// 场景一：检测当前值是否是一个对象
+				/* 	const fn = (options) => {
+				let type = typeof options
+				if (options !== null && (type === 'object' || type === 'function')) {
+					// 是一个对象
+				}
+			}
+			fn({
+				x: 10,
+				y: 20
+			})
+			fn(10) */
+
+				// 场景二：支持更多的模块导入方案
+				(function () {
+					let utils = {}
+
+					if (typeof window !== 'undefined') window.utils = utils
+					if (typeof module === 'object' && typeof module.exports === 'object')
+						module.utils = utils
+				})();
+		</script>
+	</body>
+</html>

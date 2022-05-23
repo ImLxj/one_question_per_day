@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			/* 
+        Symbol 创建一个唯一的值
+          - 给对象设置唯一值的属性名
+            - 字符串
+            - Symbol类型
+            - Map新的数据结构，可以允许属性名是对象。
+      */
+			let key = Symbol('key')
+			let obj = {
+				name: '张三',
+				[key]: 200,
+				[Symbol('aa')]: 100
+			}
+			console.log(obj[key])
+		</script>
+	</body>
+</html>
